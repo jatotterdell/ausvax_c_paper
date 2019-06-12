@@ -1,1 +1,1 @@
-# ausvax_c_paper
+# AusVax Component C Paper on Self-controlled case series analysis

@@ -4,30 +4,41 @@
 
 \documentclass[review, endfloat]{elsarticle}
 
-\usepackage[utf8]{inputenc}
+\newcommand{\abbreviations}[1]{%
+  \nonumnote{\textit{Abbreviations:\enspace}#1}}
 
+\journal{Vaccine}
+
+\usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{booktabs}
-%\usepackage{doi}
 \usepackage{hyperref}
 
-\title{Adverse events following live attenuated herpes zoster vaccine: a self-controlled case series analysis}
+\usepackage{soul}
+\usepackage{xargs}
+\usepackage[pdftex,dvipsnames]{xcolor}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\newcommandx{\unsure}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+\newcommandx{\change}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+\newcommandx{\info}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+\newcommandx{\improvement}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
+
+\title{Surveillance for adverse events following live attenuated herpes zoster vaccine: a self-controlled case series analysis using general practice data}
 
 % Authors and affiliations
 
 \author[1]{James Totterdell\corref{cor1}}
 \ead{jamestotterdell@telethonkids.org.au}
-
 \author[2]{Anastasia Phillips}
-\ead{cvr@sayahna.org}
-
 \author[3]{Catherine Glover}
-\ead[url]{www.stmdocs.in}
+\author[1]{Julie Marsh}
+\author[3]{Kristine Mccartney}
+\author[1]{Tom Snelling}
 
 \cortext[cor1]{Corresponding author}
 \address[1]{Wesfarmers Centre for Vaccines and Infectious Diseases, Telethon Kids Institute}
-\address[2]{affil}
-\address[3]{affiliation}
+\address[2]{University of Sydney}
+\address[3]{National Centre for Immunisation Research and Surveillance}
 
 
 \begin{document}
@@ -47,8 +58,10 @@
 \end{abstract}
 
 \begin{keyword}
-vaccine \sep self-controlled case series
+zoster vaccine \sep self-controlled case series \sep surveillance \sep vaccine safety
 \end{keyword}
+
+\abbreviations{ISR, injection site reaction; MI, myocardial infarction; RI, relative incidence1; SCCS, self-controlled case series; ZVL, live attenuated herpes zoster vaccine.}
 
 \end{frontmatter}
 
@@ -61,13 +74,19 @@ Live attenuated varicella-zoster vaccine (ZVL) was registered for use in Austral
 
 ZVL was evaluated in large, pre-licensure clinical trials with no increased risk of serious adverse events (SAE), hospitalized adverse events or death \cite{oxman2005, gagliardi2016vaccines, schmader2012}. The rate of injection site reactions (ISR) was higher in vaccine than placebo groups. A post-licensure clinical trial demonstrated a similar safety profile, with no statistically significant difference in the rate of SAE up to 182 days following vaccination \citep{murray2011}. Post-licensure passive surveillance has been consistent with clinical trials. Of 23,556 reports submitted by healthcare providers to the Merck, Sharp, \& Dohme Corp (MSD) Adverse Event (AE) global safety database between May 2006 and May 2016, 93\% of reports were non-serious, with ISR the most commonly reported AE (20.5\%), followed by HZ (8.6\%) and rash (4.2\%) \citep{willis2017herpes}. Of 23,092 reports submitted to the US Vaccine Adverse Events Monitoring System (VAERS) from May 2006 to January 2015, 96\% were classified as non-serious, with ISR, HZ and rash the most frequently reported non-serious AE \citep{miller2018post}.
 
-Post-marketing surveillance methods are limited by the potential for biased reporting and, for ZVL, is confounded by the higher prevalence of chronic disease in the older target population \citep{miller2018post}. The self-controlled case series (SCCS) method was developed for vaccine safety assessment and has the potential to automatically adjust for unmeasured time-invariant confounders by allowing individuals to act as their own control \citep{petersen2016}. SCCS methodology has previously been used to examine ZVL using US data from managed care cohorts \citep{tseng2012} and administrative claims data \citep{minassian2015}. In Australia, older patients typically receive ZVL from their private general practitioner (GP). While practices maintain their own electronic patient records, the Australian Government Department of Health funds NPS MedicineWise to collate GP data through the MedicineInsight program. This study used nationally representative GP data from MedicineInsight to examine the risk of pre-specified AE in the target NIP cohort.
+\hl{In Australia, AusVaxSafety is an active vaccine safety surveillance system that monitors adverse events following immunisation using data reported directly from people receiving the vaccines (or their parent or carer) with responses solicited via an automated SMS or email. Active surveillance of zoster vaccine safety conducted from 1 November 2016 to 4 November 2018 identified no safety signals amongst 18,655 adults aged 70-79 years where 8.3\% of vaccinated individuals reported an adverse event.}\info{http://ausvaxsafety.org.au/safety-data/zoster-vaccine is there any other citation we could use which breaks this down a bit further?}
+
+Post-marketing surveillance methods are limited by the potential for biased reporting and, for ZVL, is confounded by the higher prevalence of chronic disease in the older target population \citep{miller2018post}. The self-controlled case series (SCCS) method was developed for vaccine safety assessment and has the potential to automatically adjust for unmeasured time-invariant confounders by allowing individuals to act as their own control \citep{petersen2016}. SCCS methodology has previously been used to examine ZVL using US data from managed care cohorts \citep{tseng2012} and administrative claims data \citep{minassian2015}. In Australia, older patients typically receive ZVL from their private general practitioner (GP). While practices maintain their own electronic patient records, the Australian Government Department of Health funds NPS MedicineWise to collate GP data through the MedicineInsight program. 
+
+The objective of this study was to use nationally representative GP data from MedicineInsight to examine the risk of pre-specified AE following ZVL in the target NIP cohort.
 
 \section{Methods}
 
 \subsection{Study setting}
 
-The MedicineInsight data set consists of longitudinal, de-identified, whole-of-practice data extracted from the clinical information systems (CIS) of participating practice sites across Australia. It includes between 15\% and 20\% of the Australian population.  Data is extracted on patient demographics, practice encounters (excluding progress notes), diagnoses, vaccinations, prescriptions, pathology tests and referrals. Practice encounters can include clinical (a medical or nursing appointment) or non-clinical (an entry by administration staff) encounters. Within-site individual identifiers are used to identify records common to an individual attending that site. 
+The MedicineInsight data set consists of longitudinal, de-identified, whole-of-practice data extracted from the clinical information systems (CIS) of participating general practice sites across Australia. These include sites in major cities and in rural and remote areas, similar to the distribution of the Australian population over these areas. The participating sites represent between 15\% and 20\% of the Australian population.  Data is extracted on patient demographics, practice encounters (excluding progress notes), diagnoses, vaccinations, prescriptions, pathology tests and referrals. Practice encounters can include clinical (a medical or nursing appointment) or non-clinical (an entry by administration staff) encounters. Within-site individual identifiers are used to identify records common to an individual attending that site. \improvement{Citation for representativeness of MedicineInsight? Databook/website/GP insights reports?}
+
+\improvement{Perhaps discuss how clinical information is recorded e.g. the Docle and PyFinch systems. Input manually by practice staff.}
 
 \subsection{Study population}
 
@@ -75,27 +94,37 @@ The target population was individuals aged 70-79 years who were eligible to rece
 
 \subsection{Study design}
 
-The SCCS design was developed for vaccine safety evaluation \citep{farrington1995} and has been used in a variety of settings \citep{buttery2011intussusception, bakken2015febrile, stowe2016risk}. The method estimates the relative incidence of an outcome event within a risk window following exposure (i.e. vaccination) compared to the incidence at all other times under observation. Only individuals who have experienced an outcome event contribute to the relative incidence estimate and the design potentially controls for time-invariant confounders.
+We undertook a retrospective SCCS analysis of adverse events following ZVL using MedicineInsight data. The SCCS design was developed for vaccine safety evaluation \citep{farrington1995} and has been used in a variety of settings \citep{buttery2011intussusception, bakken2015febrile, stowe2016risk}. The method estimates the relative incidence of an outcome event within a risk window following exposure (i.e. vaccination) compared to the incidence at all other times under observation. Only individuals who have experienced an outcome event contribute to the relative incidence estimate and the design potentially controls for time-invariant confounders.
 
-This study investigated the relative incidence of seven pre-specified outcome events (ISR [positive control], burn [negative control], myocardial infarction, stroke, any rash, rash with a prescription for an antiviral within 2 days of the rash-related encounter, and clinical attendance) in a post-vaccination, at-risk window, with the incidence of these outcome events at a time distant to vaccination. ISR was included as a positive control given consistent evidence of an increased risk of ISR in pre-licensure and post-licensure studies. Burn was included as a negative control with any events considered unrelated to vaccination.
+This study investigated the relative incidence of seven pre-specified outcome events (ISR [positive control], burn [negative control], myocardial infarction, stroke, any rash, rash with a prescription for an antiviral within 2 days of the rash-related encounter, and clinical attendance) in a post-vaccination, at-risk window, with the incidence of these outcome events at times distant from vaccination. ISR was included as a positive control given consistent evidence of an increased risk of ISR in pre-licensure and post-licensure studies. Burn was included as a negative control with any events considered unrelated to vaccination.  
 
-Individuals in the study population may not have been at risk for events throughout the entirety of the study period. Therefore, we defined an individual’s observation period in terms of their historical activity at the site and year of death information. An individual’s start date of observation was defined as the latest of 1 November 2016, or 365 days after their first recorded activity at the site (any encounter, diagnosis, or prescription). An individual’s end date of observation was defined as 31 December in the year prior to their death for individuals who had year of death recorded, and 31 July 2018 for individuals who had no year of death recorded. The lead time of 365 days from an individual’s start of site activity was specified to allow for a catch up in medical information. Therefore, the maximum observation period allowed was 638 days. 
+Events for individuals in the study population may not have been observable throughout the entirety of the study period. We defined an individual’s observation period in terms of their historical activity at the site and year of death information. An individual’s start date of observation was defined as the latest of 1 November 2016, or 365 days after their first recorded activity at the site (any encounter, diagnosis, or prescription record). An individual’s end date of observation was defined as 31 December in the year prior to their death for individuals who had year of death recorded, and 31 July 2018 for individuals who had no year of death recorded. The lead time of 365 days from an individual’s start of site activity was specified to allow for a catch up in medical information. The maximum possible observation period for any individual was 638 days.
 
-Exposure (vaccination) was defined as an immunisation record for any of the three vaccines under study with a date of administration occurring within the individual’s observation period. Due to the mix of clinically coded and free text entries, vaccination records for the study vaccines were identified via targeted, free-text search criteria. The date of vaccination was set as the administration date specified in the vaccination record. Individuals with multiple vaccination records for ZVL or 23vPPV during their observation period were excluded as these vaccines are generally recommended to be given as a single dose for older adults. We enforced a minimum time between influenza vaccinations of 126 days because a single dose is generally recommended each season. Any influenza records occurring within 126 days of an individual’s previous influenza vaccintation were excluded from analyses.
+Exposure (vaccination) was defined as an immunisation record for any of the three vaccines under study with a date of administration occurring within the individual’s observation period. Due to the mix of clinically coded and free text entries, vaccination records for the study vaccines were identified via targeted, free-text search criteria. The date of vaccination was set as the administration date specified in the vaccination record. Individuals with multiple vaccination records for ZVL or 23vPPV during their observation period were excluded as these vaccines are generally recommended to be given as a single dose for older adults. We enforced a minimum time between influenza vaccinations of 126 days because a single dose is generally recommended each season. Any influenza records occurring within 126 days of an individual’s previous influenza vaccintation were excluded from analyses to avoid overlapping risk-windows (\autoref{sec:risk_windows}). Any vaccines with the same recorded date of administration were assumed to be co-administered.
 
-Except for clinical attendance, outcome events were identified using free-text regular expression searches of reason for encounter, reason for diagnosis and reason for prescription fields. For each record matching an outcome event, we matched encounters, diagnoses, and prescriptions on their respective dates to identify related events and then ordered all records by date of occurrence. Records of clinical attendance were identified as any site encounter record excluding those identified to be non-clinical (administrative). 
+Except for clinical attendance, outcome events were identified using free-text regular expression searches of reason for encounter, reason for diagnosis and reason for prescription fields. Each encounter, diagnosis, or prescription record identified as relating to an outcome event were matched on their respective dates assumed to relate to the one encounter. Records of clinical attendance were identified as any site encounter record excluding those identified to be non-clinical (administrative).  Individuals were identified as cases with respect to an outcome if they experienced at least one event during their observation period.
 
 \subsection{Definition of risk windows}
+\label{sec:risk_windows}
 
-Risk windows were defined based on biologically plausible windows supported by evidence. These were defined as 1–7 days post vaccination for ISR and 1–42 days post vaccination for all other outcome events. The basis for the length of the risk window for systemic adverse events was the 42 day window used in pre-licensure clinical trials and post-licensure studies. This time period is also biologically plausible for cardiovascular events, which have been observed following wild-type varicella-zoster virus, particularly 1 to 4 weeks following infection with viral replication in arterial walls the proposed mechanism for cerebrovascular disease. This risk window is also biologically plausible for rash, with varicella-like rash after 6 weeks more likely to represent wild-type infection. The risk windows for burn (the negative control) and clinical attendance were chosen to be consistent with the risk window for systemic events. For ISR, the risk window was based on the short median time to ISR (~2 days) in the Shingles Prevention Study (SPS) and post-licensure surveillance and the identification of a signal for cellulitis within 7 days in another post-licensure SCCS.
+At-risk windows were defined consistently for all vaccine types based on biologically plausible windows supported by evidence. For ISR the risk-window was 1–7 days post vaccination, and for all other outcomes was 1–42 days post vaccination. The basis for the length of the risk window for systemic adverse events was the 42 day window used in pre-licensure clinical trials \citep{oxman2005, schmader2012, murray2011, simberkoff2010} and post-licensure studies \citep{tseng2012,baxter2012}. This time period is also biologically plausible for cardiovascular events, which have been observed following wild-type varicella-zoster virus, particularly 1 to 4 weeks following infection \citep{minassian2015,schink2016}, with viral replication in arterial walls the proposed mechanism for cerebrovascular disease \citep{gilden2009}. This risk window is also biologically plausible for rash, with varicella-like rash after 6 weeks more likely to represent wild-type infection \citep{willis2017herpes}. The risk windows for burn (the negative control) and clinical attendance were chosen to be consistent with the risk window for systemic events. For ISR, the risk window was based on the short median time to ISR (\~2 days) in the Shingles Prevention Study (SPS) and post-licensure surveillance \citep{willis2017herpes,simberkoff2010} and the identification of a signal for cellulitis within 7 days in another post-licensure SCCS \citep{tseng2012}.
+
+To account for the potential for an event to affect the likelihood of vaccination a pre-exposure washout period of 42 days pre-vaccination was defined for all outcomes. A 42 day post-risk washout period was also included to minimise the potential for risk that may be attributable to the vaccine to carry over into the control period.  For rash with antiviral, an indefinite post-risk period was specified due to an expected reduced risk following ZVL vaccination. In allowing an indefinite risk period following influenza, overlapping risk periods may be encountered, and therefore for this outcome only the first recorded influenza vaccination was considered for analysis.
+
+Pre-exposure and post-risk washout periods were excluded from the control period. Additionally, the day of vaccination was excluded from analyses. \info{Detail why} This was due to large spikes in encounters for other reasons on the same day as vaccination. All other time an individual was under observation was allocated to the control period.
+
+\begin{figure}
+\caption{Self-controlled case series study design.}
+\label{fig:sccs_design}
+\end{figure}
 
 \subsection{Statistical methods}
 
-Relative incidence estimates were obtained from an SCCS model \citep{farrington2018} using the windows previously defined. Given that the study period spanned 1 November 2016 to 31 July 2018, we additionally specified fixed windows to adjusted for seasonal effects via cut-points for: 1 December, 1 March, 1 June, and 1 September. The main analysis modelled all exposures (vaccines) together and allowed for recurrent events for each outcome (i.e. every outcome event occurring during the observation period could contribute towards the relative incidence estimate). 
+Relative incidence estimates were obtained from an SCCS model \citep{farrington2018} using the windows previously defined. Given that the study period spanned 1 November 2016 to 31 July 2018, we additionally specified fixed windows to adjust for seasonal effects by specifying window cut-points: 1 December, 1 March, 1 June, and 1 September in each year. Each outcome was modelled independently. The main analyses modelled all exposures (vaccines) jointly assuming additive effects in overlapping risk-windows and allowed for recurrent events for each outcome with every outcome event occurring during the observation period contributing towards the relative incidence estimate. Weekly periodicity of events was accounted for indirectly by the specification of risk-windows in terms of full-week cycles.
 
-Dependence between recurrent events was explored visually by looking at Nelson-Aalen estimators for the cumulative hazard and hisotgrams of gap times. Dependent events violates the Poisson assumption of the SCCS model. For events where the risk of an outcome event was not considered independent of the first occurrence, sensitivity analyses were undertaken which only included the first outcome event observed.  Sensitivity analyses assessing each vaccine independently, excluding co-administered vaccines from the analysis, were also undertaken. 
+Dependent of outcome events violates the Poisson assumption of the SCCS model and may bias estimates. Recurrent event dependencies were explored visually by looking at Nelson-Aalen estimators for the cumulative hazard and histograms of gap times. For events where the risk of an outcome event was not considered independent of the first occurrence, sensitivity analyses were undertaken which only included the first outcome event observed.  Sensitivity analyses assessing each vaccine independently, excluding co-administered vaccines from the analysis, were also undertaken. 
 
-Analyses were conducted using R version 3.5.1 \citep{rmanual} and the gnm package version 1.1-0 \citep{rgnm}.
+The relative incidence and 95\% CIs for each outcome were estimated using Poisson regression with length of windows included as offset terms. All analyses were conducted using R 3.5.1 \citep{rmanual} and the gnm package version 1.1-0 \citep{rgnm}.
 
 \subsection{Ethical approval}
 
@@ -103,19 +132,61 @@ This MedicineInsight program was approved through the Royal Australian College o
 
 \section{Results}
 
-A total of 337,294 vaccination records for 150,756 individuals from 456 MedicineInsight sites were obtained. These include sites in major cities and in rural and remote areas, similar to the distribution of the Australian population over these areas. After excluding individuals with multiple ZVL or 23vPPV vaccinations, and excluding multiple influenza vaccinations within 126 days of each other, a total of 332,988 vaccinations for 150,054 individuals were included in the analysis. 
+\subsection{Descriptive analyses}
 
-\subsection{Population, outcome, and exposure characteristics}
+A total of 337,294 vaccination records for 150,756 individuals from 456 MedicineInsight sites were identified. After excluding individuals with multiple ZVL or 23vPPV vaccinations, and excluding multiple influenza vaccinations within 126 days of each other, a total of 332,988 vaccinations (ZVL: 92,857, 23vPPV: 21,480, and influenza: 218,651) for 150,054 individuals remained for inclusion in the analysis. The majority of individuals (x\%) were deemed to be under observation for the entire study period.
 
-In general, the number of vaccination records declined with age with ZVL increasing slightly at 79 years of age. About 82\% of zoster and 89\% of influenza vaccinations were administered alone, while 47\% of pneumococcal vaccinations were administered alone and 43\% were administered with influenza vaccine.
+ZVL vaccinations occurred more commonly at the beginning of the study period following its addition to the NIP. Expected weekly cycles and seasonal fluctuations in vaccination counts were observed amongst the three vaccines investigated (\autoref{fig:vax_dates}). In general, the number of vaccination records declined with age with ZVL increasing slightly at 79 years of age (\autoref{fig:vax_ages}). ZVL was commonly co-administered influenza vaccine (16\% of vaccinations) and sometimes with 23vPPV (2\%). 23vPPV and influenza vaccine were often co-administered (43\% of vaccinations).
 
-The most common outcome event identified was clinical attendance, with over 2 million attendances observed among exposed individuals during the study period. The next most commonly identified outcome event was any rash, with 12,309 events observed. The rarest outcome event identified was injection site reaction, with 177 events observed.
+Over 2 million clinical attendances were observed among exposed individuals during their observation periods. The next most commonly identified outcome event was any rash, with 12,309 events observed. The rarest outcome event identified was injection site reaction, with 177 events observed.
+
+\begin{figure}
+\includegraphics{figs/exposure_time_series}
+\caption{Daily counts of vaccinations administered during the study period.}
+\label{fig:vax_dates}
+\end{figure}
+
+\begin{figure}
+\includegraphics{figs/age_at_exposure}
+\caption{Distribution of age at vaccination.}
+\label{fig:vax_ages}
+\end{figure}
+
 
 \subsection{Self-controlled case series analysis}
 
 \subsubsection{Injection site reactions}
 
+An increase in the relative incidence of injection site reactions was observed in the 7-day risk window following all three vaccines in the main analysis (ZVL RI = 77.4, 95\% CI [48.1, 124.6]; 23vPPV 65.0, [31.66, 133.6]; influenza 6.6, [3.4, 12.8]). This was consistent in sensitivity analyses excluding co-administered vaccines.
+
+In main and sensitivity analyses, the incidence of ISR remained elevated in the 42-day post-risk period following ZVL (RI = 3.4, 95\% CI [1.8, 6.5] in main analysis). A 7-day partition of this period identified that incidence remained elevated 8to 14 days post-vaccination (RI = 16.2, 95\% CI [6.8, 38.7]) before returning to baseline levels.
+
+\subsubsection{Myocardial infarction}
+
+\subsubsection{Stroke}
+
 \section{Discussion}
+
+The results of this SCCS analysis of MedicineInsight GP data provide evidence to support the safety of ZVL in individuals aged 70–79 years. An expected increased incidence of ISR up to at least 7 days following vaccination was observed following all three vaccines. In the SPS safety sub study, ISR were more common in vaccine (48\%) compared to placebo (16\%) recipients \citep{simberkoff2010}. The intensity of erythema and swelling were significantly greater in vaccine recipients and persisted for longer, although fewer than 1\% of vaccine recipients reported them as severe. A post-marketing study of 193,083 adults aged over 50 years in eight US managed care organisations demonstrated a small but significant increased risk of cellulitis and infection one to seven days following vaccination using the case-centred method \citep{tseng2012}. In our study, we observed elevated incidence if ISR up to 14 days following ZVL. While the SPS sub study did demonstrate ISR significantly later in vaccine recipients compared to placebo recipients, events still occurred a median of 2.3 days following vaccination. Similarly, in global passive surveillance, ISR have been reported at a median of 2 days following vaccination \citep{willis2017herpes}. In this SCCS, the risk of ISR was also elevated in the sensitivity analysis that excluded concomitantly administered vaccines. Similarly, a clinical trial of ZVL administered concomitantly with influenza vaccine, ISR and systemic reactions were comparable in those administered the vaccines concomitantly versus ZVL alone \citep{levin2018immunogenicity}.
+
+The use of general practice data and the SCCS design is a critical step in moving beyond passive surveillance and its inherent limitations. In Australia, many patients, especially older patients, see a regular general practitioner and GPs are immunisation providers for most patient cohorts. There is significant scope to better utilise routinely collected GP data for vaccine safety surveillance once the limitations and applications are more fully understood and validation of methodology has occurred. Linkage with hospitalisation data in Australia will make primary care data a rich source of information.
+
+Observability of some events following vaccination within the MedicineInsight data depends on interaction between general practice site systems and hospital information.
+
+\section{Conclusion}
+
+No new safety concerns were identified for ZVL in this study based on a novel data source using an SCCS design. Expected findings in relation to the positive (ISR) and negative (burn) control conditions support the validity of the SCCS analysis in this setting using general practice data. Findings in relation to cardiovascular disease and stroke were reassuring. Further work should focus on validation of identified exposures and outcomes and linkage with hospitalisation data and within sites.
+
+\section{Disclaimer}
+
+\section{Declaration of interest}
+
+\section{Acknowledgements}
+
+\section{Funding/Support}
+
+\listoftodos[Notes]
+
 
 \bibliographystyle{elsarticle-num-names}
 \bibliography{ausvax-paper}
